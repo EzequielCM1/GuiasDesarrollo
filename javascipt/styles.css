@@ -1,0 +1,270 @@
+/* styles.css - Diseño Minimalista y Moderno */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100vw;
+  min-width: 0;
+  overflow-x: hidden !important;
+  background: #f6fafc;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* === Layout por defecto: flex para desktop === */
+body {
+  display: flex;
+  color: #222b45;
+  background: linear-gradient(135deg, #f6fafc 0%, #edf2fb 100%);
+}
+
+/* === Aside izquierdo fijo en desktop === */
+aside {
+  width: 260px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid #e2e8f0;
+  padding: 2rem 1.5rem;
+  height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  color: #375889;
+}
+
+aside h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  color: #598ddb;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #375889;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  outline: none;
+}
+
+#searchInput:focus {
+  border-color: #89b4fa;
+  box-shadow: 0 0 0 2px #e3eafc;
+}
+
+#sectionList {
+  list-style: none;
+  padding: 0;
+}
+
+#sectionList li {
+  margin-bottom: 0.8rem;
+}
+
+#sectionList a {
+  color: #5675a0;
+  background: none;
+  text-decoration: none;
+  font-size: 1.08rem;
+  border-radius: 4px;
+  padding: 0.45rem 0.4rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+#sectionList a:hover {
+  background: #eaf3ff;
+  color: #355386;
+}
+
+/* === Desktop Footer fijo a la derecha === */
+#fixedFooter {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: rgba(255,255,255,0.95);
+  border-left: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #5675a0;
+  font-size: 1rem;
+}
+
+#fixedFooter strong {
+  font-size: 1.125rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* === Main desktop === */
+main {
+  margin-left: 260px;
+  margin-right: 220px;
+  padding: 2rem 2.5vw;
+  width: 100%;
+  flex: 1;
+  max-width: calc(100vw - 480px);
+}
+
+/* === Responsive: mobile === */
+@media (max-width: 900px) {
+  body {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 100vh;
+    justify-content: flex-start;
+  }
+  aside,
+  main,
+  #fixedFooter {
+    position: static;
+    width: 100%;
+    max-width: 100vw;
+    min-width: 0;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+  }
+  aside {
+    order: 1;
+    padding: 1.2rem 6vw;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: none;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+  main {
+    order: 2;
+    padding: 1.3rem 6vw 2.4rem 6vw;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 42vh;
+  }
+  #fixedFooter {
+    order: 3;
+    margin-top: 14px;
+    background: #f4f8fe;
+    padding: 1.2rem 0.8rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: none;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+/* === Contenido principal === */
+.section {
+  margin-bottom: 2.5rem;
+}
+.section h2 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: #5675a0;
+  margin-bottom: 1.1rem;
+  border-bottom: 2px solid #e3eafc;
+  padding-bottom: 0.2em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(89,180,250,0.07);
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+th {
+  background: #dbedff;
+  color: #355386;
+  padding: 0.9rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.97rem;
+  letter-spacing: 0.01em;
+  border-bottom: 1.5px solid #e3eafc;
+}
+td {
+  padding: 0.85rem 0.8rem;
+  border-bottom: 1px solid #e3eafc;
+  font-size: 0.95rem;
+  background: none;
+}
+td:first-child {
+  font-weight: 600;
+  color: #4257b2;
+  font-family: 'Fira Code', monospace;
+}
+td:nth-child(2) {
+  background: #f4f8fe;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.93rem;
+  color: #355386;
+}
+
+/* === RESALTADO DE BÚSQUEDA === */
+.highlight-row {
+  background: linear-gradient(90deg, #fff9db 0%, #fef3c7 100%) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.highlight-row td {
+  background: unset !important;
+  color: #b08900 !important;
+  font-weight: 600;
+}
+
+.highlight-row td:nth-child(1) {
+  background: #ffe066 !important;
+  color: #835c00 !important;
+  font-size: 1.05em;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  padding: 0.85rem 1.1rem;
+}
+
+/* Quitar animaciones/hover filas */
+tbody tr,
+tbody tr:hover,
+td,
+td:hover {
+  transition: none !important;
+  background: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f8fe;
+}
+::-webkit-scrollbar-thumb {
+  background: #dbeafc;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #89b4fa;
+}
