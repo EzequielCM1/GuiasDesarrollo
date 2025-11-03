@@ -1,4 +1,5 @@
 // Render dinámico
+"use strict";
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById("content");
   const asideList = document.getElementById("sectionList");
@@ -28,7 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     table.appendChild(tbody);
-    section.appendChild(table);
+  // Envolver la tabla en un contenedor con scroll horizontal si hace falta
+  const wrapper = document.createElement("div");
+  wrapper.className = "table-wrapper";
+  wrapper.appendChild(table);
+  section.appendChild(wrapper);
     main.appendChild(section);
 
     const li = document.createElement("li");

@@ -4,72 +4,91 @@ const data = [
   {
     titulo: "Arrays en PHP",
     contenido: [
-      ["array()", '$colores = array("Rojo", "Verde", "Azul"); o $colores = ["Rojo","Verde","Azul"];', "Crea un array simple (indexado)."],
+      ["array()", '$colores = ["Rojo","Verde","Azul"];', "Crea un array simple (indexado)."],
       ["Array asociativo", '$reserva = ["nombre"=>"Luis", "personas"=>4];', "Usa claves personalizadas."],
       ["Array multidimensional", '$reservas = [ ["nombre"=>"Luis"], ["nombre"=>"Ana"] ];', "Arrays dentro de arrays."],
       ["foreach", 'foreach ($reservas as $r) { echo $r["nombre"]; }', "Recorre un array completo."],
       ["print_r()", 'print_r($reservas);', "Muestra la estructura de un array."],
       ["count()", 'count($reservas);', "Cuenta elementos del array."],
       ["array_sum()", 'array_sum([1,2,3]);', "Suma valores numéricos."],
-      ["implode()", 'implode(", ", $preferencias);', "Convierte un array en texto (p. ej. checkboxes)."],
-      ["in_array()", 'in_array("musica", $preferencias);', "Comprueba si un valor existe en el array."],
+      ["implode()", 'implode(", ", $preferencias);', "Convierte un array en texto."],
+      ["in_array()", 'in_array("musica", $preferencias);', "Busca un valor dentro del array."],
       ["isset()", 'isset($reserva["nombre"]);', "Comprueba si existe una clave."],
       ["empty()", 'empty($reservas);', "Comprueba si un array está vacío."],
-      ["ucfirst()", 'ucfirst("musica"); // Música', "Convierte la primera letra en mayúscula."]
+      ["ucfirst()", 'ucfirst("musica");', "Primera letra en mayúscula."]
     ]
   },
   {
     titulo: "Ficheros en PHP",
     contenido: [
-      ["file_exists()", 'file_exists("usuarios.csv");', "Verifica si el archivo existe."],
-      ["fopen()", '$f = fopen("usuarios.csv", "a+");', "Abre un archivo en modo lectura/escritura."],
-      ["fclose()", 'fclose($f);', "Cierra el archivo."],
-      ["fgetcsv()", 'fgetcsv($fichero);', "Lee una línea CSV y la convierte en array."],
-      ["fputcsv()", 'fputcsv($fichero, $datos);', "Escribe un array en formato CSV."],
-      ["file_get_contents()", 'file_get_contents("archivo.txt");', "Lee todo el contenido del archivo."],
-      ["file_put_contents()", 'file_put_contents("archivo.txt", "Texto");', "Escribe directamente (crea o sobrescribe)."],
-      ["unlink()", 'unlink("archivo.txt");', "Elimina un archivo."],
-      ["rename()", 'rename("viejo.csv", "nuevo.csv");', "Cambia nombre o ubicación."],
-      ["copy()", 'copy("origen.csv", "copia.csv");', "Crea una copia del archivo."],
-      ["filesize()", 'filesize("usuarios.csv");', "Devuelve el tamaño del archivo."],
-      ["basename()", 'basename("ruta/usuarios.csv");', "Devuelve solo el nombre del archivo."],
-      ["pathinfo()", 'pathinfo("usuarios.csv");', "Devuelve datos: nombre, extensión, ruta."],
-      ["feof()", 'while(!feof($f)) {...}', "Comprueba si se alcanzó el final del archivo."]
+      // --- APERTURA DE FICHEROS (fopen) ---
+      ["fopen() - r", '$f = fopen("archivo.txt", "r");', "Solo lectura (error si no existe)."],
+      ["fopen() - r+", '$f = fopen("archivo.txt", "r+");', "Leer y escribir (no crea archivo)."],
+      ["fopen() - w", '$f = fopen("archivo.txt", "w");', "Escritura (sobrescribe o crea nuevo)."],
+      ["fopen() - w+", '$f = fopen("archivo.txt", "w+");', "Leer y escribir (sobrescribe)."],
+      ["fopen() - a", '$f = fopen("archivo.txt", "a");', "Añadir al final (no borra)."],
+      ["fopen() - a+", '$f = fopen("archivo.txt", "a+");', "Leer y añadir al final."],
+      ["fopen() - x", '$f = fopen("archivo.txt", "x");', "Crear nuevo (error si ya existe)."],
+
+      // --- LECTURA / ESCRITURA ---
+      ["fgets()", '$linea = fgets($f);', "Lee una línea."],
+      ["fread()", 'fread($f, filesize("archivo.txt"));', "Lee todo o X bytes."],
+      ["fwrite()", 'fwrite($f, "Texto");', "Escribe texto."],
+      ["feof()", 'while(!feof($f)) { ... }', "Fin de archivo."],
+      ["fclose()", 'fclose($f);', "Cierra archivo."],
+
+      // --- MÉTODOS DIRECTOS ---
+      ["file_get_contents()", 'file_get_contents("archivo.txt");', "Lee todo el archivo."],
+      ["file_put_contents()", 'file_put_contents("archivo.txt", "Texto");', "Escribe (sobrescribe)."],
+      ["file_put_contents + FILE_APPEND", 'file_put_contents("archivo.txt", "Texto", FILE_APPEND);', "Añade sin borrar."],
+      ["file()", '$lineas = file("archivo.txt");', "Devuelve array por líneas."],
+      ["readfile()", 'readfile("archivo.txt");', "Lee y muestra directamente."],
+
+      // --- CSV UTILES ---
+      ["fgetcsv()", '$datos = fgetcsv($f);', "Lee línea CSV como array."],
+      ["fputcsv()", 'fputcsv($f, $array);', "Escribe array en CSV."],
+
+      // --- ARCHIVOS Y DIRECTORIOS ---
+      ["unlink()", 'unlink("archivo.txt");', "Elimina archivo."],
+      ["rename()", 'rename("viejo.txt", "nuevo.txt");', "Renombra o mueve archivo."],
+      ["copy()", 'copy("origen.txt", "copia.txt");', "Copia archivo."],
+      ["scandir()", '$archivos = scandir("carpeta/");', "Lista archivos de un directorio."],
+      ["filesize()", 'filesize("archivo.txt");', "Tamaño en bytes."],
+      ["chmod()", 'chmod("archivo.txt", 0644);', "Permisos de archivo."],
+      ["touch()", 'touch("nuevo.txt");', "Crea archivo o modifica fecha."],
+      ["pathinfo()", 'pathinfo("archivo.txt");', "Devuelve ruta, nombre y extensión."],
+      ["basename()", 'basename("ruta/archivo.txt");', "Solo el nombre del archivo."],
+      ["file_exists()", 'file_exists("archivo.txt");', "Comprueba si existe."]
+
+      // ✅ SUBIDA DE ARCHIVOS Y TEMPORALES
+    ]
+  },
+  {
+    titulo: "Subida de archivos ($_FILES)",
+    contenido: [
+      ["$_FILES", '$_FILES["fichero"]["name"];', "Nombre original del archivo."],
+      ["tmp_name", '$_FILES["fichero"]["tmp_name"];', "Ruta temporal donde se guarda."],
+      ["move_uploaded_file()", 'move_uploaded_file($_FILES["f"]["tmp_name"], "upload/".$nombre);', "Mueve archivo del temporal al destino."],
+      ["UPLOAD_ERR_OK", 'if ($_FILES["f"]["error"] == UPLOAD_ERR_OK)', "Subida correcta."],
+      ["Validar extensión", 'pathinfo($nombre, PATHINFO_EXTENSION);', "Obtiene la extensión."],
+      ["Validar tamaño", 'if ($_FILES["f"]["size"] > 8000000) { ... }', "Límite de tamaño."],
+      ["Fichero temporal", '$_FILES["f"]["tmp_name"];', "Se elimina automáticamente al finalizar el script si no se mueve."],
+      ["is_uploaded_file()", 'is_uploaded_file($_FILES["f"]["tmp_name"]);', "Comprueba si viene de formulario."],
+      ["$_FILES completo", 'print_r($_FILES);', "Muestra nombre, tipo, tamaño, tmp_name, error."]
     ]
   },
   {
     titulo: "Formularios en PHP",
     contenido: [
-      ["$_POST", '$_POST["nombre"];', "Recoge los datos enviados por formulario."],
-      ["$_SERVER[\"REQUEST_METHOD\"]", 'if ($_SERVER["REQUEST_METHOD"] == "POST") {...}', "Comprueba si se envió el formulario."],
-      ["htmlspecialchars()", 'htmlspecialchars($_POST["nombre"]);', "Escapa caracteres especiales (seguridad XSS)."],
-      ["Operador Null (??)", '$nombre = $_POST["nombre"] ?? "";', "Evita errores si no se envió el campo."],
-      ["filter_var()", 'filter_var($email, FILTER_VALIDATE_EMAIL);', "Valida formato de correo electrónico."],
-      ["isset()", 'isset($_POST["enviar"]);', "Comprueba si un campo o botón fue pulsado."],
-      ["empty()", 'if (empty($_POST["nombre"])) {...}', "Verifica si un campo está vacío."],
-      ["header()", 'header("Location: formulario.php");', "Redirige a otra página (limpiar formulario)."],
-      ["exit()", 'exit();', "Detiene el script inmediatamente."],
-      ["date_create()", '$fecha = date_create("2000-01-01");', "Crea un objeto de tipo fecha."],
-      ["date_diff()", 'date_diff($fecha, $actual)->y;', "Calcula años de diferencia (edad)."],
-      ["trim()", 'trim($_POST["nombre"]);', "Elimina espacios en blanco."],
-      ["strlen()", 'strlen($password) < 8', "Mide la longitud de una cadena."],
-      ["preg_match()", 'preg_match(\'/[A-Z]/\', $password);', "Comprueba si la cadena contiene un patrón (regex)."],
-      ["foreach", 'foreach ($opciones as $opcion)', "Recorre arrays (por ejemplo, checkboxes)."],
-      ["implode()", 'implode(", ", $preferencias);', "Guarda varias selecciones como texto."],
-      ["in_array()", 'in_array("viajes", $preferencias);', "Mantiene marcada una casilla seleccionada."],
-      ["header(\"Location:\") + exit()", "Redirige y limpia el formulario.", ""],
-      ["if / else / elseif", "Estructuras condicionales usadas para validar campos.", ""],
-      ["switch (opcional, reservas)", "Puede usarse para validar varias opciones (p. ej., tipo de mesa).", ""]
-    ]
-  },
-  {
-    titulo: "Validaciones adicionales (Reservas)",
-    contenido: [
-      ["Validar hora (strtotime)", 'if (strtotime($hora) < strtotime("20:00")) {...}', "Convierte la hora a formato UNIX y permite compararla."],
-      ["Validar boolean (true/false)", 'if ($exterior == true)', "Comprueba si el cliente pidió mesa exterior."],
-      ["Validar número (is_numeric)", 'if (!is_numeric($personas)) {...}', "Comprueba si el valor es numérico."],
-      ["Validar rango (>, <)", 'if ($personas > 10)', "Controla límites en los valores (p. ej., máximo 10 personas)."],
-      ["break y continue", "Usados en bucles foreach", "Controlan el flujo del bucle."]
+      ["$_POST", '$_POST["nombre"];', "Recoge datos enviados por POST."],
+      ["$_SERVER['REQUEST_METHOD']", 'if ($_SERVER["REQUEST_METHOD"] == "POST") {...}', "Comprueba si se envió el formulario."],
+      ["htmlspecialchars()", 'htmlspecialchars($_POST["nombre"]);', "Evita XSS escapando caracteres."],
+      ["trim()", 'trim($_POST["nombre"]);', "Elimina espacios."],
+      ["filter_var()", 'filter_var($email, FILTER_VALIDATE_EMAIL);', "Valida email."],
+      ["isset()", 'isset($_POST["campo"]);', "Comprueba si existe una clave."],
+      ["empty()", 'empty($_POST["nombre"]);', "Comprueba si está vacío."],
+      ["header()", 'header("Location: pagina.php");', "Redirige."],
+      ["exit()", 'exit();', "Detiene la ejecución."]
     ]
   }
 ];
