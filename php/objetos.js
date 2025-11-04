@@ -115,7 +115,8 @@ const data = [
   {
   titulo: "Constantes útiles en PHP",
   contenido: [
-    ["PHP_EOL", 'echo "Hola" . PHP_EOL . "Mundo";', "Salto de línea según el sistema operativo (Útil en ficheros)."]
+    ["PHP_EOL", 'echo "Hola" . PHP_EOL . "Mundo";', "Salto de línea según el sistema operativo (Útil en ficheros)."],
+    ["uniqid()", 'pones el uniqid() al nombre del archivo ";', "Genera un nombre único (útil para evitar sobrescribir archivos)."],
   ]
 }
 ];
