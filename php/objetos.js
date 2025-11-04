@@ -82,6 +82,19 @@ const data = [
     ]
   },
   {
+  titulo: "Serialización y JSON",
+  contenido: [
+    // --- JSON ---
+    ["json_encode()", 'json_encode($array);', "Convierte un array o variable en texto JSON."],
+    ["json_decode()", 'json_decode($json, true);', "Convierte JSON a array asociativo (true) o a objeto (false)."],
+    ["json_last_error()", 'json_last_error();', "Devuelve el último error de json_encode/decode."],
+
+    // --- SERIALIZACIÓN ---
+    ["serialize()", 'serialize($array);', "Convierte una variable/array en un string especial para almacenarlo o enviarlo."],
+    ["unserialize()", 'unserialize($string);', "Reconstruye la variable/array original a partir de un string serializado."]
+  ]
+},
+  {
     titulo: "Formularios en PHP",
     contenido: [
       ["$_POST", '$_POST["nombre"];', "Recoge datos enviados por POST."],
