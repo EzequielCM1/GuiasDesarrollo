@@ -15,7 +15,13 @@ const data = [
       ["in_array()", 'in_array("musica", $preferencias);', "Busca un valor dentro del array."],
       ["isset()", 'isset($reserva["nombre"]);', "Comprueba si existe una clave."],
       ["empty()", 'empty($reservas);', "Comprueba si un array está vacío."],
-      ["ucfirst()", 'ucfirst("musica");', "Primera letra en mayúscula."]
+      ["ucfirst()", 'ucfirst("musica");', "Primera letra en mayúscula."],
+      ["explode()", 'explode(",", $texto);', "Convierte un string en array usando un separador."],
+      ["array_map()", 'array_map("trim", $array);', "Aplica una función a cada elemento del array."],
+      ["sort()", 'sort($array);', "Ordena un array en orden alfabético o numérico."],
+      ["SORT_STRING", "", "Constante para ordenar alfabéticamente."],
+      ["SORT_FLAG_CASE", "", "Ignora mayúsculas/minúsculas al ordenar (combinar con SORT_STRING)."],
+
     ]
   },
   {
@@ -61,42 +67,46 @@ const data = [
       ["touch()", 'touch("nuevo.txt");', "Crea archivo o modifica fecha."],
       ["pathinfo()", 'pathinfo("archivo.txt");', "Devuelve ruta, nombre y extensión."],
       ["basename()", 'basename("ruta/archivo.txt");', "Solo el nombre del archivo."],
-      ["file_exists()", 'file_exists("archivo.txt");', "Comprueba si existe."]
+      ["file_exists()", 'file_exists("archivo.txt");', "Comprueba si existe."],
+      ["strlen()", 'strlen($nombre);', "Devuelve el número de caracteres de una cadena."],
+      ["preg_replace()", 'preg_replace("/[^a-zA-Z0-9_-]/", "", $nombre);', "Reemplaza caracteres usando una expresión regular."],
+      ["strtolower()", 'strtolower($texto);', "Convierte a minúsculas."],
+
 
       // ✅ SUBIDA DE ARCHIVOS Y TEMPORALES
     ]
   },
   {
     titulo: "Subida de archivos ($_FILES)",
-  contenido: [
-    ["enctype=\"multipart/form-data\"", 'enctype="multipart/form-data"', "Obligatorio en formularios que envían archivos."],
-    ["$_FILES", '$_FILES["fichero"];', "Array que almacena toda la información del archivo subido."],
-    ["name", '$_FILES["fichero"]["name"];', "Nombre original del archivo."],
-    ["type", '$_FILES["fichero"]["type"];', "Tipo MIME (image/jpeg, application/pdf...)."],
-    ["tmp_name", '$_FILES["fichero"]["tmp_name"];', "Ruta temporal donde PHP lo guarda."],
-    ["size", '$_FILES["fichero"]["size"];', "Tamaño del archivo en bytes."],
-    ["error", '$_FILES["fichero"]["error"];', "Código de error (0 si fue correcto)."],
-    ["UPLOAD_ERR_OK", 'if ($_FILES["f"]["error"] == UPLOAD_ERR_OK)', "Subida correcta."],
-    ["is_uploaded_file()", 'is_uploaded_file($_FILES["f"]["tmp_name"]);', "Comprueba si viene de un formulario válido."],
-    ["move_uploaded_file()", 'move_uploaded_file($_FILES["f"]["tmp_name"], "uploads/".$nuevoNombre);', "Mueve archivo del temporal a destino."],
-    ["Validar extensión", 'pathinfo($nombre, PATHINFO_EXTENSION);', "Obtiene la extensión del archivo."],
-    ["Validar tamaño", 'if ($_FILES["f"]["size"] > 2000000) {...}', "Comprueba límite de peso."],
-    ["$_FILES completo", 'print_r($_FILES);', "Muestra todo el contenido del array de archivos."]
-  ]
+    contenido: [
+      ["enctype=\"multipart/form-data\"", 'enctype="multipart/form-data"', "Obligatorio en formularios que envían archivos."],
+      ["$_FILES", '$_FILES["fichero"];', "Array que almacena toda la información del archivo subido."],
+      ["name", '$_FILES["fichero"]["name"];', "Nombre original del archivo."],
+      ["type", '$_FILES["fichero"]["type"];', "Tipo MIME (image/jpeg, application/pdf...)."],
+      ["tmp_name", '$_FILES["fichero"]["tmp_name"];', "Ruta temporal donde PHP lo guarda."],
+      ["size", '$_FILES["fichero"]["size"];', "Tamaño del archivo en bytes."],
+      ["error", '$_FILES["fichero"]["error"];', "Código de error (0 si fue correcto)."],
+      ["UPLOAD_ERR_OK", 'if ($_FILES["f"]["error"] == UPLOAD_ERR_OK)', "Subida correcta."],
+      ["is_uploaded_file()", 'is_uploaded_file($_FILES["f"]["tmp_name"]);', "Comprueba si viene de un formulario válido."],
+      ["move_uploaded_file()", 'move_uploaded_file($_FILES["f"]["tmp_name"], "uploads/".$nuevoNombre);', "Mueve archivo del temporal a destino."],
+      ["Validar extensión", 'pathinfo($nombre, PATHINFO_EXTENSION);', "Obtiene la extensión del archivo."],
+      ["Validar tamaño", 'if ($_FILES["f"]["size"] > 2000000) {...}', "Comprueba límite de peso."],
+      ["$_FILES completo", 'print_r($_FILES);', "Muestra todo el contenido del array de archivos."]
+    ]
   },
   {
-  titulo: "Serialización y JSON",
-  contenido: [
-    // --- JSON ---
-    ["json_encode()", 'json_encode($array);', "Convierte un array o variable en texto JSON."],
-    ["json_decode()", 'json_decode($json, true);', "Convierte JSON a array asociativo (true) o a objeto (false)."],
-    ["json_last_error()", 'json_last_error();', "Devuelve el último error de json_encode/decode."],
+    titulo: "Serialización y JSON",
+    contenido: [
+      // --- JSON ---
+      ["json_encode()", 'json_encode($array);', "Convierte un array o variable en texto JSON."],
+      ["json_decode()", 'json_decode($json, true);', "Convierte JSON a array asociativo (true) o a objeto (false)."],
+      ["json_last_error()", 'json_last_error();', "Devuelve el último error de json_encode/decode."],
 
-    // --- SERIALIZACIÓN ---
-    ["serialize()", 'serialize($array);', "Convierte una variable/array en un string especial para almacenarlo o enviarlo."],
-    ["unserialize()", 'unserialize($string);', "Reconstruye la variable/array original a partir de un string serializado."]
-  ]
-},
+      // --- SERIALIZACIÓN ---
+      ["serialize()", 'serialize($array);', "Convierte una variable/array en un string especial para almacenarlo o enviarlo."],
+      ["unserialize()", 'unserialize($string);', "Reconstruye la variable/array original a partir de un string serializado."]
+    ]
+  },
   {
     titulo: "Formularios en PHP",
     contenido: [
@@ -113,10 +123,10 @@ const data = [
     ]
   },
   {
-  titulo: "Constantes útiles en PHP",
-  contenido: [
-    ["PHP_EOL", 'echo "Hola" . PHP_EOL . "Mundo";', "Salto de línea según el sistema operativo (Útil en ficheros)."],
-    ["uniqid()", 'pones el uniqid() al nombre del archivo ";', "Genera un nombre único (útil para evitar sobrescribir archivos)."],
-  ]
-}
+    titulo: "Constantes útiles en PHP",
+    contenido: [
+      ["PHP_EOL", 'echo "Hola" . PHP_EOL . "Mundo";', "Salto de línea según el sistema operativo (Útil en ficheros)."],
+      ["uniqid()", 'pones el uniqid() al nombre del archivo ";', "Genera un nombre único (útil para evitar sobrescribir archivos)."],
+    ]
+  }
 ];
