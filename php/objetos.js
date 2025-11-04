@@ -92,6 +92,7 @@ const data = [
       ["isset()", 'isset($_POST["campo"]);', "Comprueba si existe una clave."],
       ["empty()", 'empty($_POST["nombre"]);', "Comprueba si está vacío."],
       ["header()", 'header("Location: pagina.php");', "Redirige."],
+      ["stripslashes()", 'stripslashes($texto)', "Elimina barras invertidas"],
       ["exit()", 'exit();', "Detiene la ejecución."]
     ]
   }
