@@ -19,8 +19,8 @@ const data = [
       ["explode()", 'explode(",", $texto);', "Convierte un string en array usando un separador."],
       ["array_map()", 'array_map("trim", $array);', "Aplica una función a cada elemento del array."],
       ["sort()", 'sort($array);', "Ordena un array en orden alfabético o numérico."],
-      ["SORT_STRING", "", "Constante para ordenar alfabéticamente."],
-      ["SORT_FLAG_CASE", "", "Ignora mayúsculas/minúsculas al ordenar (combinar con SORT_STRING)."],
+      ["SORT_STRING", "sort($palabrasOrdenadas, SORT_STRING);", "Constante para ordenar alfabéticamente."],
+      ["SORT_FLAG_CASE", "sort($palabrasOrdenadas, SORT_STRING | SORT_FLAG_CASE);", "Ignora mayúsculas/minúsculas al ordenar (combinar con SORT_STRING)."],
 
     ]
   },
