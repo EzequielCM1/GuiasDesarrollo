@@ -32,10 +32,13 @@ const data = [
 
       // --- LECTURA / ESCRITURA ---
       ["fgets()", '$linea = fgets($f);', "Lee una línea."],
+      ["fgetc()", 'fgetc($manejador) ;', "Lee un carácter."],
       ["fread()", 'fread($f, filesize("archivo.txt"));', "Lee todo o X bytes."],
       ["fwrite()", 'fwrite($f, "Texto");', "Escribe texto."],
       ["feof()", 'while(!feof($f)) { ... }', "Fin de archivo."],
       ["fclose()", 'fclose($f);', "Cierra archivo."],
+      ["fputs()", 'fputs($manejador, $texto);', "Igual que fwrite()."],
+      ["fputc()", 'fputc($manejador, $caracter);', "Escribe un carácter."],
 
       // --- MÉTODOS DIRECTOS ---
       ["file_get_contents()", 'file_get_contents("archivo.txt");', "Lee todo el archivo."],
@@ -68,13 +71,14 @@ const data = [
     contenido: [
       ["$_FILES", '$_FILES["fichero"]["name"];', "Nombre original del archivo."],
       ["tmp_name", '$_FILES["fichero"]["tmp_name"];', "Ruta temporal donde se guarda."],
-      ["move_uploaded_file()", 'move_uploaded_file($_FILES["f"]["tmp_name"], "upload/".$nombre);', "Mueve archivo del temporal al destino."],
+      ["move_uploaded_file()", 'move_uploaded_file($tmp,$destino)', "Mueve archivo del temporal al destino."],
       ["UPLOAD_ERR_OK", 'if ($_FILES["f"]["error"] == UPLOAD_ERR_OK)', "Subida correcta."],
       ["Validar extensión", 'pathinfo($nombre, PATHINFO_EXTENSION);', "Obtiene la extensión."],
       ["Validar tamaño", 'if ($_FILES["f"]["size"] > 8000000) { ... }', "Límite de tamaño."],
       ["Fichero temporal", '$_FILES["f"]["tmp_name"];', "Se elimina automáticamente al finalizar el script si no se mueve."],
       ["is_uploaded_file()", 'is_uploaded_file($_FILES["f"]["tmp_name"]);', "Comprueba si viene de formulario."],
-      ["$_FILES completo", 'print_r($_FILES);', "Muestra nombre, tipo, tamaño, tmp_name, error."]
+      ["$_FILES completo", 'print_r($_FILES);', "Muestra nombre, tipo, tamaño, tmp_name, error."],
+      ["uniqid()", 'uniqid()', "Genera un nombre único (útil para evitar sobrescribirarchivos)"]
     ]
   },
   {
